@@ -5,6 +5,14 @@ from chapter7.leapyear import leap_year
 def main():
     print("This program determines whether an inputted date is valid.")
     date = input("Enter a date in format M/D/Y: ")
+    valid = check_date(date)
+    if valid:
+        print("%s is a valid date." % date)
+    else:
+        print("%s is not a valid date." % date)
+
+
+def check_date(date):
     elements = date.split("/")
     valid = True
     if len(elements) != 3:
@@ -22,10 +30,7 @@ def main():
             valid = False
         elif day > month_lengths[month]:
             valid = leap and month == 2 and day == 29
-    if valid:
-        print("%s is a valid date." % date)
-    else:
-        print("%s is not a valid date." % date)
+    return valid
 
 
 if __name__ == '__main__':
