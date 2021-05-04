@@ -1,5 +1,5 @@
 # volleyball.py
-from random import random
+from random import random, randrange
 
 
 def print_intro():
@@ -17,24 +17,18 @@ def get_inputs():
 
 
 def game_over(a, b):
-    return (a == 15 or b == 15) and abs(a - b) >= 2
+    return (a == 30 or b == 30) and abs(a - b) >= 2
 
 
 def sim_one_game(prob_a, prob_b):
-    a_serving = True
+    total_prob = prob_a + prob_b
     score_a = 0
     score_b = 0
     while not game_over(score_a, score_b):
-        if a_serving:
-            if random() < prob_a:
-                score_a += 1
-            else:
-                a_serving = False
+        if (random() * total_prob) < prob_a:
+            score_a += 1
         else:
-            if random() < prob_b:
-                score_b += 1
-            else:
-                a_serving = True
+            score_b += 1
     return score_a, score_b
 
 
